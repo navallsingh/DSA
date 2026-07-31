@@ -2,19 +2,20 @@ class Solution {
 public:
     bool checkValidString(string s) {
         int low = 0, high = 0;
-        for(char c : s){
-            if(c == '('){
-                low++;
-                high++;
-            } else if(c == ')'){
-                if(low > 0) low--;   // use one '(' if possible
-                high--;
-            } else if(c == '*'){
-                if(low > 0) low--;   // treat '*' as ')'
-                high++;              // treat '*' as '('
-            }
-            if(high < 0) return false; // too many ')'
+       for (char ch : s){
+        if(ch=='('){
+            low++;
+            high++;
+        }else if(ch == ')'){
+            if(low>0) low--;
+            high--;
+        }else if(ch == '*'){
+            if(low>0)low--;
+            high++;
+
         }
-        return low == 0;
+        if(high<0) return false;
+       }
+       return low == 0;
     }
 };
