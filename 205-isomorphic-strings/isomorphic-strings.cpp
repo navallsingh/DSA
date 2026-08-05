@@ -1,14 +1,20 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-    if( s.size() != t.size()) return false;
+   if(s.size() != t.size()) return false;
 
-    for(int i = 0;i<s.size();i++){
-        for(int j = i+1;j<s.size();j++){
-            if(s[i]==s[j] && t[i]!=t[j]) return false;
-            if(s[i]!=s[j] && t[i]==t[j]) return false;
-        }
-    }
+   unordered_map<char, char> st;
+   unordered_map<char, char> ts;
+
+   for(int i =0;i<s.size();i++){
+    char sc = s[i], tc = t[i];
+
+    if(st.count(sc) && st[sc] != tc ) return false;
+    if(ts.count(tc) && ts[tc] != sc ) return false;
+
+    st[sc] = tc;
+    ts[tc] = sc;
+   }
     return true;
     }
 };
